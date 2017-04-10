@@ -24,11 +24,20 @@ $(document).ready(() => {
 
     if (typeof richTextEditorBuilder !== 'undefined') {
         /* eslint-disable camelcase */ // The property names are determined by external library (tinymce)
-        richTextEditorBuilder.initEditor('#instructions', {
-            inline: true,
-            readonly: isEdit,
-            fixed_toolbar_container: '#richtext-toolbar-container',
-        });
+        if (window.location.pathname == "/page/instructorFeedbacksPage") {
+	        richTextEditorBuilder.initEditor('#instructions', {
+	            inline: false,
+	            readonly: isEdit,
+	            fixed_toolbar_container: '#richtext-toolbar-container',
+	        });
+	    } 
+	    else {
+	    	richTextEditorBuilder.initEditor('#instructions', {
+	            inline: true,
+	            readonly: isEdit,
+	            fixed_toolbar_container: '#richtext-toolbar-container',
+	        });
+	    }
         /* eslint-enable camelcase */
     }
 });
