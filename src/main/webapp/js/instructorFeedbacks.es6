@@ -19,6 +19,7 @@ FEEDBACK_SESSION_PUBLISHDATE:false, FEEDBACK_SESSION_PUBLISHTIME:false
 // TODO: Move constants from Common.js into appropriate files if not shared.
 const TIMEZONE_SELECT_UNINITIALISED = '-9999';
 
+<<<<<<< HEAD
 $(document).ready(() => {
     const isEdit = typeof readyFeedbackEditPage === 'function';
 
@@ -42,6 +43,8 @@ $(document).ready(() => {
     }
 });
 
+=======
+>>>>>>> TEAMMATES/master
 function extractQuestionNumFromEditFormId(id) {
     return parseInt(id.substring('form_editquestion-'.length, id.length), 10);
 }
