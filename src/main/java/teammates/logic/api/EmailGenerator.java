@@ -304,7 +304,7 @@ public class EmailGenerator {
         List<EmailWrapper> emails = generateFeedbackSessionEmailBases(course, session, students, instructors, template,
                                                                       EmailType.FEEDBACK_CLOSING.getSubject());
         for (EmailWrapper email : emails) {
-            email.setContent(email.getContent().replace("${status}", "is closing soon. <strong>No action is required if you have already submitted.</strong>"));
+            email.setContent(email.getContent().replace("${status}", "is closing soon. <strong>No action is required if you have already submitted</strong>"));
         }
         return emails;
     }
