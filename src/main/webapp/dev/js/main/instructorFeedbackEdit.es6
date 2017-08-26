@@ -26,6 +26,11 @@ import {
 } from '../common/helper.es6';
 
 import {
+    backupFormHtml,
+    restoreFormHtml,
+} from '../common/htmlBackupAndRestoreHelper.es6';
+
+import {
     prepareInstructorPages,
     setupFsCopyModal,
 } from '../common/instructor.es6';
@@ -159,6 +164,7 @@ const DISPLAY_FEEDBACK_SESSION_VISIBLE_DATEINVALID = 'Feedback session visible d
 const DISPLAY_FEEDBACK_SESSION_PUBLISH_DATEINVALID = 'Feedback session publish date must not be empty';
 
 const questionsBeforeEdit = [];
+let backupFsDetails = {};
 
 function getCustomDateTimeFields() {
     return $(`#${ParamsNames.FEEDBACK_SESSION_PUBLISHDATE}`).add(`#${ParamsNames.FEEDBACK_SESSION_PUBLISHTIME}`)
@@ -380,6 +386,7 @@ function enableEditFS() {
     $('#fsDiscardChanges').show();
     $('#fsSaveLink').show();
     $('#button_submit').show();
+    backupFsDetails = backupFormHtml('#form_feedbacksession', 'instructions');
 }
 
 /**
@@ -1137,7 +1144,7 @@ $(document).ready(() => {
 
     $(document).on('click', '#fsDiscardChanges', () => {
         const okCallback = () => {
-            $('#form_feedbacksession').trigger('reset');
+            restoreFormHtml('#form_feedbacksession', backupFsDetails);
             disableEditFS();
         };
         showModalConfirmation(WARNING_DISCARD_CHANGES, CONFIRM_DISCARD_CHANGES, okCallback, null, null, null,
